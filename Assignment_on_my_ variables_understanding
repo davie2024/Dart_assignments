@@ -1,0 +1,18 @@
+//a program showing my understanding of variables//
+void main() {
+// Declaring datatypes.  
+int num1 = 100; // int datatype.
+double num2 = 130.2; // bolean datatype.
+String divisibility = "one hundred and is divisible by ten"; //string datatype.
+List<String> numbers = ["10", "60", "200"]; 
+Map<String, int> numberInWords = {'Two':2, 'Forty five': 45, 'Two thousand and twenty four' : 2024}; //Map datatype.
+   
+// Printing Info   
+print("Num 1 is $num1");
+print("Num 2 is $num2");  
+print("num 1 is $divisibility");  
+print("numbers divisible by 2 are $numbers"); 
+print ("The following numbers are written in word and figures $numberInWords");
+ 
+   
+}
