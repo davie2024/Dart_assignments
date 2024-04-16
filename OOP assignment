@@ -1,0 +1,72 @@
+import 'dart:io';
+
+// Interface
+abstract class Vehicle {
+  void start();
+  void stop();
+}
+
+// Base class
+class Car implements Vehicle {
+  late String brand;
+  late String model;
+  late int year;
+
+  Car(this.brand, this.model, this.year);
+
+  @override
+  void start() {
+    print('$brand $model starting...');
+  }
+
+  @override
+  void stop() {
+    print('$brand $model stopping...');
+  }
+
+  void displayInfo() {
+    print('Car: $year $brand $model');
+  }
+}
+
+// Subclass
+class ElectricCar extends Car {
+  ElectricCar(String brand, String model, int year) : super(brand, model, year);
+
+  @override
+  void start() {
+    super.start();
+    print('Starting electric engine...');
+  }
+}
+
+void main() {
+  // Creating an instance of ElectricCar
+  ElectricCar myCar = ElectricCar('Tesla', 'Model S', 2022);
+
+  // Initializing data from a file
+  initializeFromFile(myCar, 'car_data.txt');
+
+  // Using a loop to demonstrate
+  for (int i = 0; i < 3; i++) {
+    myCar.start();
+    myCar.stop();
+  }
+}
+
+void initializeFromFile(Car car, String fileName) {
+  try {
+    File file = File(fileName);
+    List<String> lines = file.readAsLinesSync();
+
+    if (lines.length >= 3) {
+      car.brand = lines[0];
+      car.model = lines[1];
+      car.year = int.tryParse(lines[2]) ?? 0;
+    } else {
+      print('File does not contain enough data.');
+    }
+  } catch (e) {
+    print('Error: $e');
+  }
+}
